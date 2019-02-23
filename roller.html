@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<title>DiceRoller Beta</title>
+	<meta charset="utf-8"/>
+	<link href="https://fonts.googleapis.com/css?family=MedievalSharp" rel="stylesheet">
+	<style type="text/css">
+		body{
+			background-color: #fff3e6;
+		}
+		.interface{
+			/*margin-left: 520px;*/
+			display: inline-block;
+			border: 3px solid rgb(102,0,0);
+			padding: 10px;
+			background-color: rgb(239, 218, 177);
+			box-shadow: 1px 1px 1px rgba(102,0,0,.5);
+			font-weight: bold;
+			color: #A70F01;
+			margin-left: 35%;
+			position: relative;
+		}
+		button{
+			font-weight: bold;
+			background-color: #f5f5f0;
+			color: rgb(102,0,0);
+		}
+		input{
+			background-color: #f5f5f0;
+		}
+		legend{
+			background-color:  rgb(239, 218, 177);
+			border: 1px solid rgb(102,0,0);
+			box-shadow: 1px 1px 1px rgba(102,0,0,.5);
+		}
+
+		hr{
+			border-color: rgb(102,0,0);
+			margin-top: 180px;
+		}
+
+		h1{
+			text-align: center;
+			margin-top: 100px;
+			color: rgb(102,0,0);
+			font-family: 'MedievalSharp', cursive;
+			font-size: 50px;
+		}
+	</style>
+</head>
+<body>
+
+<div class="tot">
+<fieldset class="interface">
+	<legend>Dice Roller</legend>
+	<label>D20</label>
+	<input class="green" type="text" id="20"/>
+	<button id="20" name="20" onclick="roll(this.id)">Roll D20</button>
+	<br/>
+	<label>D12</label>
+	<input class="natural" type="text" id="12"/>
+	<button id="12" onclick="roll(this.id)">Roll D12</button>
+	<br/>
+	<label>D10</label>
+	<input type="text" id="10"/>
+	<button id="10" onclick="roll(this.id)">Roll D10</button>
+	<br/>
+	<label>D8 &nbsp;</label>
+	<input type="text" id="8"/>
+	<button id="8" onclick="roll(this.id)">Roll D8 &nbsp;</button>
+	<br/>
+	<label>D6 &nbsp;</label>
+	<input type="text" id="6"/>
+	<button id="6" onclick="roll(this.id)">Roll D6 &nbsp;</button>
+	<br/>
+	<label>D4 &nbsp;</label>
+	<input type="text" id="4"/>
+	<button id="4" onclick="roll(this.id)">Roll D4 &nbsp;</button>
+	<br/>
+	<p id="jogadas"> - </p>
+	<p id="result"> - </p>
+
+</fieldset>
+
+<div id="logo">
+
+	<h1>Dungeons &#38; Dragons</h1>
+
+</div>
+
+
+<script type="text/javascript">
+	
+	
+	function roll(nomeDado){
+		var txt20 = document.getElementById(nomeDado).value;
+		var d20 = parseInt(txt20);
+		var jogadas = new Array();
+		for(var i = 0;i<d20;i++){
+			var aux = getRandomIntInclusive(1,parseInt(nomeDado));
+			jogadas.push(aux);
+		}
+		var total = somaResultados(jogadas);
+		document.getElementById("jogadas").innerHTML = "Jogadas: "+jogadas;
+		document.getElementById("result").innerHTML = "Resultado: "+total;
+
+	}
+
+	function getRandomIntInclusive(min,max){
+		min = Math.ceil(min);
+		max = Math.floor(max);
+		return Math.floor(Math.random()*(max - min + 1) + min);
+	}
+
+	function somaResultados(jogadas){
+		var soma = 0;
+		for(var i=0;i<jogadas.length;i++){
+			soma = soma + jogadas[i];
+		}
+		return soma;
+	}
+</script>
+
+<hr/>
+
+</div>
+</body>
+</html>
